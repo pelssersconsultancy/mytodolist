@@ -55,7 +55,6 @@ public class SystemPropertyProducer {
         Optional<String> propertyValue = Optional.ofNullable(System.getProperty(annotation.value()));
         return propertyValue.orElseThrow(() ->
                 new PropertyNotFoundException("Could not locate system property " + annotation.value()));
-
     }
 }
 

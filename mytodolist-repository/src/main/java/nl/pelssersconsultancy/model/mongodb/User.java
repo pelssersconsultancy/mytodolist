@@ -25,20 +25,20 @@ public class User {
     public static final String _email = "email";
 
 
-    public User(UserBuilder builder) {
+    public User(Builder builder) {
         this.birthDay = builder.birthDay;
         this.email = builder.email;
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
     }
 
-    public static class UserBuilder {
+    public static class Builder {
         private String firstName;
         private String lastName;
         private Date birthDay;
         private String email;
 
-        public UserBuilder fromUser(User user) {
+        public Builder fromUser(User user) {
             this.birthDay = user.birthDay;
             this.email = user.email;
             this.firstName = user.firstName;
@@ -46,22 +46,22 @@ public class User {
             return this;
         }
 
-        public UserBuilder withFirstName(String firstName) {
+        public Builder withFirstName(String firstName) {
             this.firstName = firstName;
             return this;
         }
 
-        public UserBuilder withLastName(String lastName) {
+        public Builder withLastName(String lastName) {
             this.lastName = lastName;
             return this;
         }
 
-        public UserBuilder withBirthDay(Date birthDay) {
+        public Builder withBirthDay(Date birthDay) {
             this.birthDay = birthDay;
             return this;
         }
 
-        public UserBuilder withEmail(String email) {
+        public Builder withEmail(String email) {
             this.email = email;
             return this;
         }

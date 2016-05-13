@@ -8,11 +8,12 @@ public class TodoItem extends RootEntity {
     protected String shortName;
     protected String description;
 
+    public TodoItem() {}
 
-    public TodoItem(TodoItemBuilder builder) {
+    public TodoItem(Builder builder) {
         this.description = builder.description;
         this.shortName = builder.shortName;
-
+        this.auditTrail = builder.auditTrail;
     }
 
     public String getShortName() {
@@ -23,25 +24,27 @@ public class TodoItem extends RootEntity {
         return description;
     }
 
-    public static class TodoItemBuilder {
+    public static class Builder extends RootEntity.Builder<TodoItem, Builder> {
 
         private String shortName;
         private String description;
 
-        public TodoItemBuilder withShortName(String shortName) {
+        public Builder withShortName(String shortName) {
             this.shortName = shortName;
             return this;
         }
 
-        public TodoItemBuilder withDescription(String description) {
+        public Builder withDescription(String description) {
             this.description = description;
+            return this;
+        }
+
+        public Builder self() {
             return this;
         }
 
         public TodoItem build() {
             return new TodoItem(this);
         }
-
-
     }
 }

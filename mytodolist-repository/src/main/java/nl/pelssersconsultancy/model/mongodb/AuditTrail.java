@@ -20,7 +20,7 @@ public class AuditTrail {
     @NotNull
     protected User lastModifiedBy;
 
-    public AuditTrail(AuditTrailBuilder builder) {
+    public AuditTrail(Builder builder) {
         this.created = builder.created;
         this.createdBy = builder.createdBy;
         this.lastModified = builder.lastModified;
@@ -43,13 +43,13 @@ public class AuditTrail {
         return lastModifiedBy;
     }
 
-    public static class AuditTrailBuilder {
-        private Date created;
-        private User createdBy;
-        private Date lastModified;
-        private User lastModifiedBy;
+    public static class Builder {
+        protected Date created;
+        protected User createdBy;
+        protected Date lastModified;
+        protected User lastModifiedBy;
 
-        public AuditTrailBuilder fromAuditTrail(AuditTrail auditTrail) {
+        public Builder fromAuditTrail(AuditTrail auditTrail) {
             this.created = auditTrail.created;
             this.createdBy = auditTrail.createdBy;
             this.lastModified = auditTrail.lastModified;
@@ -57,22 +57,22 @@ public class AuditTrail {
             return this;
         }
 
-        public AuditTrailBuilder withCreated(Date created) {
+        public Builder withCreated(Date created) {
             this.created = created;
             return this;
         }
 
-        public AuditTrailBuilder withCreatedBy(User createdBy) {
+        public Builder withCreatedBy(User createdBy) {
             this.createdBy = createdBy;
             return this;
         }
 
-        public AuditTrailBuilder withLastModified(Date lastModified) {
+        public Builder withLastModified(Date lastModified) {
             this.lastModified = lastModified;
             return this;
         }
 
-        public AuditTrailBuilder withLastModifiedBy(User lastModifiedBy) {
+        public Builder withLastModifiedBy(User lastModifiedBy) {
             this.lastModifiedBy = lastModifiedBy;
             return this;
         }
