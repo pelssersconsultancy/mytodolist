@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <name>My Todo List: An application showcasing MongoDB, JAX-RS, Swagger, Morphia and more...</name>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>nl.pelssersconsultancy</groupId>
+    <artifactId>mytodolist</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <url>https://github.com/pelssersconsultancy/mytodolist</url>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <distribution>repo</distribution>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+        </license>
+    </licenses>
+    <modules>
+        <module>mytodolist-web</module>
+        <module>mytodolist-repository</module>
+        <module>mytodolist-bom</module>
+        <module>mytodolist-common</module>
+    </modules>
+
+    <!-- Needed for mvn Release plugin -->
+    <scm>
+        <url>https://github.com/pelssersconsultancy/mytodolist</url>
+        <connection>scm:git:git://github.com-pelssersconsultancy:pelssersconsultancy/mytodolist.git</connection>
+        <developerConnection>scm:git:git://github.com-pelssersconsultancy:pelssersconsultancy/mytodolist.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <!-- needed for code coverage reporting -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.6.201602180812</version>
+                <configuration>
+                    <append>true</append>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>jacoco-initialize</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-site</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>merge</goal>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-plugin</artifactId>
+                <version>1.9.4</version>
+                <configuration/>
+            </plugin>
+        </plugins>
+    </build>
+</project>
