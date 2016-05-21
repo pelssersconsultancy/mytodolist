@@ -1,4 +1,4 @@
-package nl.pelssersconsultancy.model.mongodb;
+package nl.pc.model.mongodb;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;

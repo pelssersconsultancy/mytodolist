@@ -1,9 +1,9 @@
-package nl.pelssersconsultancy.repository.producer;
+package nl.pc.repository.producer;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
-import nl.pelssersconsultancy.model.mongodb.RootEntity;
+import nl.pc.model.mongodb.RootEntity;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.ValidationExtension;
@@ -23,18 +23,18 @@ public abstract class DatastoreProducer implements IDatastoreProducer {
 
     @PostConstruct
     public void init() {
-        DBConfiguration config = getDBConfiguration();
+        DBConfiguration cfg = getDBConfiguration();
         List<MongoCredential> credentials = new ArrayList<>();
-        if (config.getDbCredentials().isPresent()) {
-            DBCredential dbCredential = config.getDbCredentials().get();
-            MongoCredential credential = MongoCredential.createCredential(
-                    dbCredential.getUsername(),
-                    config.getDatabaseName(),
-                    dbCredential.getPassword().toCharArray()
-            );
-            credentials.add(credential);
-        }
-        MongoClient client = new MongoClient(new ServerAddress(config.getHostname(), config.getPort()),credentials);
+
+        cfg.getDbCredentials()
+            .map(credential ->
+                MongoCredential.createCredential(
+                    credential.getUsername(),
+                    cfg.getDatabaseName(),
+                    credential.getPassword().toCharArray()))
+            .ifPresent(credentials::add);
+
+        MongoClient client = new MongoClient(new ServerAddress(cfg.getHostname(), cfg.getPort()),credentials);
         Morphia morphia = new Morphia();
 
         // Morphia Logger Plugin
@@ -46,7 +46,7 @@ public abstract class DatastoreProducer implements IDatastoreProducer {
 
         getEntityClasses().forEach(morphia::map);
 
-        datastore = morphia.createDatastore(client, config.getPrefixedDatabaseName());
+        datastore = morphia.createDatastore(client, cfg.getPrefixedDatabaseName());
         datastore.ensureIndexes();
 
     }

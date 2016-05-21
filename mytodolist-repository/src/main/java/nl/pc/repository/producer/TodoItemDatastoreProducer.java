@@ -1,8 +1,8 @@
-package nl.pelssersconsultancy.repository.producer;
+package nl.pc.repository.producer;
 
-import nl.pelssersconsultancy.common.SystemPropertyProducer.*;
-import nl.pelssersconsultancy.model.mongodb.RootEntity;
-import nl.pelssersconsultancy.model.mongodb.TodoItem;
+import nl.pc.common.SystemPropertyProducer.*;
+import nl.pc.model.mongodb.RootEntity;
+import nl.pc.model.mongodb.TodoItem;
 
 import javax.inject.Inject;
 import java.util.Collections;

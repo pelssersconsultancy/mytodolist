@@ -1,4 +1,4 @@
-package nl.pelssersconsultancy.repository.producer;
+package nl.pc.repository.producer;
 
 import org.mongodb.morphia.Datastore;
 

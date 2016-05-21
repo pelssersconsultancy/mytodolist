@@ -1,4 +1,4 @@
-package nl.pelssersconsultancy.exception;
+package nl.pc.exception;
 
 public class PropertyNotFoundException extends RuntimeException {
 

@@ -1,4 +1,4 @@
-package nl.pelssersconsultancy.common;
+package nl.pc.common;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

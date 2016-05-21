@@ -1,4 +1,4 @@
-package nl.pelssersconsultancy.model.mongodb;
+package nl.pc.model.mongodb;
 
 
 import org.hibernate.validator.constraints.NotBlank;

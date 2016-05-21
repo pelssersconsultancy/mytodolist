@@ -1,7 +1,7 @@
-package nl.pelssersconsultancy.common;
+package nl.pc.common;
 
 
-import nl.pelssersconsultancy.exception.PropertyNotFoundException;
+import nl.pc.exception.PropertyNotFoundException;
 
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;

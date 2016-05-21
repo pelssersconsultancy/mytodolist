@@ -1,4 +1,4 @@
-package nl.pelssersconsultancy.model.mongodb;
+package nl.pc.model.mongodb;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Embedded;
