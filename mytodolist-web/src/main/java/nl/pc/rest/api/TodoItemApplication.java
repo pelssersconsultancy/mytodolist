@@ -11,7 +11,7 @@ public class TodoItemApplication extends Application {
     @Override
     public Set<Class<?>> getClasses() {
         Set<Class<?>> resources = super.getClasses();
-//        resources.addAll(getApiResources());
+        resources.add(TodoItemResource.class);
         return resources;
     }
 

@@ -1,16 +1,45 @@
 package nl.pc.rest.api;
 
 
-import io.swagger.annotations.Api;
+import io.swagger.annotations.*;
+import nl.pc.rest.model.TodoItemCreateModel;
+import nl.pc.rest.model.TodoItemViewModel;
+import nl.pc.rest.service.ITodoItemRestService;
 
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import javax.inject.Inject;
+import javax.validation.Valid;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
 
 @Path("/todo-item")
 @Produces(MediaType.APPLICATION_JSON)
 @Api(value = "Todo Item", description = "Operations about Todo Items")
 public class TodoItemResource {
 
+    @Context
+    private SecurityContext securityContext;
+
+    @Context
+    private UriInfo uriInfo;
+
+    @Inject
+    private ITodoItemRestService todoItemRestService;
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @ApiOperation(
+            value = "Create a new Todo Item",
+            notes = "Creates a new `TodoItem`",
+            response = TodoItemViewModel.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message="Successfully created"),
+            @ApiResponse(code = 400, message="Invalid TodoItemCreateModel")
+    })
+    public Response createKpi(@Valid TodoItemCreateModel model) {
+        TodoItemViewModel viewModel = todoItemRestService.create(model);
+        return Response.created(uriInfo.getAbsolutePathBuilder().path(viewModel.getId()).build())
+                .entity(viewModel)
+                .build();
+    }
 
 }

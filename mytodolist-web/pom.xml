@@ -30,13 +30,18 @@
 
     <dependencies>
         <dependency>
-            <groupId>nl.pelssersconsultancy</groupId>
-            <artifactId>mytodolist-common</artifactId>
+            <groupId>nl.pc</groupId>
+            <artifactId>mytodolist-service</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.spec.javax.ejb</groupId>
+            <artifactId>jboss-ejb-api_3.2_spec</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
