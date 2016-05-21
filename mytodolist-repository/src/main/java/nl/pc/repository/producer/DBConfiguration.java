@@ -7,7 +7,7 @@ public class DBConfiguration {
     protected String hostname;
     protected int port;
     protected String databaseName;
-    protected Optional<DBCredential> dbCredentials;
+    protected Optional<DBCredential> dbCredentials = Optional.empty();
     protected String prefix;
 
     public String getHostname() {

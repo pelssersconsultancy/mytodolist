@@ -23,7 +23,7 @@ public class TodoItemDatastoreProducer extends DatastoreProducer {
     private String databasename;
 
     @Inject
-    @SystemProperty("todoitem.mongodb.prefix")
+    @SystemProperty("todoitems.mongodb.prefix")
     private String prefix;
 
     @Inject
@@ -38,11 +38,11 @@ public class TodoItemDatastoreProducer extends DatastoreProducer {
     public DBConfiguration getDBConfiguration() {
         return new DBConfiguration.Builder()
             .withDatabaseName(databasename)
-                .withHostname(hostname)
-                .withPort(port)
-                .withPrefix(prefix)
-                .withCredentials(username, password)
-                .build();
+            .withHostname(hostname)
+            .withPort(port)
+            .withPrefix(prefix)
+            .withCredentials(username, password)
+            .build();
     }
 
     @Override
