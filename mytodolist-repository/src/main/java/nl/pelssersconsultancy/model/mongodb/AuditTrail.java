@@ -3,35 +3,29 @@ package nl.pelssersconsultancy.model.mongodb;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-/**
- * Gives insight into
- * - by whom (createdBy, lastModifiedBy)
- * - when (created, lastModified)
- * data is altered
- */
 public class AuditTrail {
 
     @NotNull
     protected Date created;
+    public static final String _created = "created";
+
     @NotNull
-    protected User createdBy;
+    protected String createdBy;
+    public static final String _createdBy = "createdBy";
+
     @NotNull
     protected Date lastModified;
-    @NotNull
-    protected User lastModifiedBy;
+    public static final String _lastModified = "lastModified";
 
-    public AuditTrail(Builder builder) {
-        this.created = builder.created;
-        this.createdBy = builder.createdBy;
-        this.lastModified = builder.lastModified;
-        this.lastModifiedBy = builder.lastModifiedBy;
-    }
+    @NotNull
+    protected String lastModifiedBy;
+    public static final String _lastModifiedBy = "_lastModifiedBy";
 
     public Date getCreated() {
         return created;
     }
 
-    public User getCreatedBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
@@ -39,46 +33,47 @@ public class AuditTrail {
         return lastModified;
     }
 
-    public User getLastModifiedBy() {
+    public String getLastModifiedBy() {
         return lastModifiedBy;
     }
 
     public static class Builder {
-        protected Date created;
-        protected User createdBy;
-        protected Date lastModified;
-        protected User lastModifiedBy;
 
-        public Builder fromAuditTrail(AuditTrail auditTrail) {
-            this.created = auditTrail.created;
-            this.createdBy = auditTrail.createdBy;
-            this.lastModified = auditTrail.lastModified;
-            this.lastModifiedBy = auditTrail.lastModifiedBy;
-            return this;
+        private AuditTrail auditTrail;
+
+        public Builder() {
+            this.auditTrail = new AuditTrail();
+        }
+
+        public Builder(AuditTrail auditTrail) {
+            this.auditTrail.created = auditTrail.created;
+            this.auditTrail.createdBy = auditTrail.createdBy;
+            this.auditTrail.lastModified = auditTrail.lastModified;
+            this.auditTrail.lastModifiedBy = auditTrail.lastModifiedBy;
         }
 
         public Builder withCreated(Date created) {
-            this.created = created;
+            this.auditTrail.created = created;
             return this;
         }
 
-        public Builder withCreatedBy(User createdBy) {
-            this.createdBy = createdBy;
+        public Builder withCreatedBy(String createdBy) {
+            this.auditTrail.createdBy = createdBy;
             return this;
         }
 
         public Builder withLastModified(Date lastModified) {
-            this.lastModified = lastModified;
+            this.auditTrail.lastModified = lastModified;
             return this;
         }
 
-        public Builder withLastModifiedBy(User lastModifiedBy) {
-            this.lastModifiedBy = lastModifiedBy;
+        public Builder withLastModifiedBy(String lastModifiedBy) {
+            this.auditTrail.lastModifiedBy = lastModifiedBy;
             return this;
         }
 
         public AuditTrail build() {
-            return new AuditTrail(this);
+            return this.auditTrail;
         }
     }
 }

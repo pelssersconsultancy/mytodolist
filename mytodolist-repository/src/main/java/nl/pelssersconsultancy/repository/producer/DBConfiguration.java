@@ -1,8 +1,5 @@
 package nl.pelssersconsultancy.repository.producer;
 
-
-import nl.pelssersconsultancy.common.IBuilder;
-
 import java.util.Optional;
 
 public class DBConfiguration {
@@ -12,14 +9,6 @@ public class DBConfiguration {
     protected String databaseName;
     protected Optional<DBCredential> dbCredentials;
     protected String prefix;
-
-    public DBConfiguration(Builder builder) {
-        this.hostname = builder.hostname;
-        this.port = builder.port;
-        this.databaseName = builder.databaseName;
-        this.dbCredentials = builder.dbCredentials;
-        this.prefix = builder.prefix;
-    }
 
     public String getHostname() {
         return hostname;
@@ -45,51 +34,56 @@ public class DBConfiguration {
         return String.join("", getPrefix(), getDatabaseName());
     }
 
-    public static class Builder implements IBuilder {
+    public static class Builder  {
 
-        protected String hostname;
-        protected int port;
-        protected String databaseName;
-        protected Optional<DBCredential> dbCredentials = Optional.empty();
-        protected String prefix;
+        private DBConfiguration dbConfiguration;
+
+        public Builder() {
+            this.dbConfiguration = new DBConfiguration();
+        }
+
+        public Builder(DBConfiguration dbConfiguration) {
+            this.dbConfiguration.databaseName = dbConfiguration.databaseName;
+            this.dbConfiguration.dbCredentials = dbConfiguration.dbCredentials;
+            this.dbConfiguration.hostname = dbConfiguration.hostname;
+            this.dbConfiguration.port = dbConfiguration.port;
+            this.dbConfiguration.prefix = dbConfiguration.prefix;
+        }
 
 
         public Builder withHostname(String hostname) {
-            this.hostname = hostname;
-            return self();
+            this.dbConfiguration.hostname = hostname;
+            return this;
         }
 
         public Builder withPort(int port) {
-            this.port = port;
-            return self();
+            this.dbConfiguration.port = port;
+            return this;
         }
 
-        public Builder withDabaseName(String databaseName) {
-            this.databaseName = databaseName;
-            return self();
+        public Builder withDatabaseName(String databaseName) {
+            this.dbConfiguration.databaseName = databaseName;
+            return this;
         }
 
         public Builder withCredentials(String username, String password) {
-            this.dbCredentials = Optional.of(new DBCredential.Builder()
+            this.dbConfiguration.dbCredentials = Optional.of(new DBCredential.Builder()
                     .withPassword(password)
                     .withUsername(username)
                     .build()
             );
-            return self();
+            return this;
         }
 
         public Builder withPrefix(String prefix) {
-            this.prefix = prefix;
-            return self();
+            this.dbConfiguration.prefix = prefix;
+            return this;
         }
 
         public DBConfiguration build() {
-            return new DBConfiguration(this);
+            return this.dbConfiguration;
         }
 
-        public Builder self() {
-            return this;
-        }
     }
 
 }

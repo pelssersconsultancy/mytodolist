@@ -2,11 +2,16 @@ package nl.pelssersconsultancy.model.mongodb;
 
 
 import org.hibernate.validator.constraints.NotBlank;
-
+import org.mongodb.morphia.annotations.Entity;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
+@Entity(noClassnameStored = true)
 public class User {
+
+    @NotBlank
+    protected String userId;
+    public static final String _userId = "userId";
 
     @NotBlank
     protected String firstName;
@@ -24,50 +29,51 @@ public class User {
     protected String email;
     public static final String _email = "email";
 
+    public User() {}
 
-    public User(Builder builder) {
-        this.birthDay = builder.birthDay;
-        this.email = builder.email;
-        this.firstName = builder.firstName;
-        this.lastName = builder.lastName;
-    }
 
     public static class Builder {
-        private String firstName;
-        private String lastName;
-        private Date birthDay;
-        private String email;
+        private User user;
 
-        public Builder fromUser(User user) {
-            this.birthDay = user.birthDay;
-            this.email = user.email;
-            this.firstName = user.firstName;
-            this.lastName = user.lastName;
+        public Builder() {
+            this.user = new User();
+        }
+
+        public Builder(User user) {
+            this.user.userId = user.userId;
+            this.user.birthDay = user.birthDay;
+            this.user.email = user.email;
+            this.user.firstName = user.firstName;
+            this.user.lastName = user.lastName;
+        }
+
+        public Builder withUserId(String userId) {
+            this.user.userId = userId;
             return this;
         }
 
         public Builder withFirstName(String firstName) {
-            this.firstName = firstName;
+            this.user.firstName = firstName;
             return this;
         }
 
         public Builder withLastName(String lastName) {
-            this.lastName = lastName;
+            this.user.lastName = lastName;
             return this;
         }
 
         public Builder withBirthDay(Date birthDay) {
-            this.birthDay = birthDay;
+            this.user.birthDay = birthDay;
             return this;
         }
 
         public Builder withEmail(String email) {
-            this.email = email;
+            this.user.email = email;
             return this;
         }
 
         public User build() {
-            return new User(this);
+            return this.user;
         }
     }
 

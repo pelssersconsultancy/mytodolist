@@ -1,18 +1,10 @@
 package nl.pelssersconsultancy.repository.producer;
 
 
-import nl.pelssersconsultancy.common.IBuilder;
-
 public class DBCredential {
 
     protected String username;
     protected String password;
-
-    public DBCredential(Builder builder) {
-        this.username = builder.username;
-        this.password = builder.password;
-    }
-
 
     public String getUsername() {
         return username;
@@ -22,27 +14,31 @@ public class DBCredential {
         return password;
     }
 
-    public static class Builder implements IBuilder {
+    public static class Builder {
 
-        protected String username;
-        protected String password;
+        private DBCredential dbCredential;
+
+        public Builder() {
+            this.dbCredential = new DBCredential();
+        }
+
+        public Builder(DBCredential dbCredential) {
+            this.dbCredential.password = dbCredential.password;
+            this.dbCredential.username = dbCredential.username;
+        }
 
         public Builder withUsername(String username) {
-            this.username = username;
-            return self();
+            this.dbCredential.username = username;
+            return this;
         }
 
         public Builder withPassword(String password) {
-            this.password = password;
-            return self();
+            this.dbCredential.password = password;
+            return this;
         }
 
         public DBCredential build() {
-            return new DBCredential(this);
-        }
-
-        public Builder self() {
-            return this;
+            return this.dbCredential;
         }
     }
 }

@@ -23,6 +23,10 @@ public class TodoItemDatastoreProducer extends DatastoreProducer {
     private String databasename;
 
     @Inject
+    @SystemProperty("todoitem.mongodb.prefix")
+    private String prefix;
+
+    @Inject
     @SystemProperty("todoitems.mongodb.username")
     private String username;
 
@@ -33,9 +37,10 @@ public class TodoItemDatastoreProducer extends DatastoreProducer {
     @Override
     public DBConfiguration getDBConfiguration() {
         return new DBConfiguration.Builder()
-            .withDabaseName(databasename)
+            .withDatabaseName(databasename)
                 .withHostname(hostname)
                 .withPort(port)
+                .withPrefix(prefix)
                 .withCredentials(username, password)
                 .build();
     }
