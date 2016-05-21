@@ -1,13 +1,18 @@
 package nl.pc.repository.producer;
 
-import nl.pc.common.SystemPropertyProducer.*;
+
+import nl.pc.common.SystemProperty;
 import nl.pc.model.mongodb.RootEntity;
 import nl.pc.model.mongodb.TodoItem;
-
+import javax.ejb.ConcurrencyManagement;
+import javax.ejb.ConcurrencyManagementType;
+import javax.ejb.Singleton;
 import javax.inject.Inject;
 import java.util.Collections;
 import java.util.List;
 
+@Singleton
+@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 public class TodoItemDatastoreProducer extends DatastoreProducer {
 
     @Inject
