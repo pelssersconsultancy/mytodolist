@@ -1,4 +1,4 @@
-package nl.pc.repository.producer;
+package nl.pc.producer;
 
 
 public class DBCredential {

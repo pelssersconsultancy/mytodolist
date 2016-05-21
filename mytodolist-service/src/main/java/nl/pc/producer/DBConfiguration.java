@@ -1,4 +1,4 @@
-package nl.pc.repository.producer;
+package nl.pc.producer;
 
 import java.util.Optional;
 
@@ -9,6 +9,7 @@ public class DBConfiguration {
     protected String databaseName;
     protected Optional<DBCredential> dbCredentials = Optional.empty();
     protected String prefix;
+    protected String joiner = "";
 
     public String getHostname() {
         return hostname;
@@ -30,8 +31,12 @@ public class DBConfiguration {
         return this.prefix;
     }
 
+    public String getJoiner() {
+        return this.joiner;
+    }
+
     public String getPrefixedDatabaseName() {
-        return String.join("", getPrefix(), getDatabaseName());
+        return String.join(joiner, getPrefix(), getDatabaseName());
     }
 
     public static class Builder  {
@@ -48,6 +53,7 @@ public class DBConfiguration {
             this.dbConfiguration.hostname = dbConfiguration.hostname;
             this.dbConfiguration.port = dbConfiguration.port;
             this.dbConfiguration.prefix = dbConfiguration.prefix;
+            this.dbConfiguration.joiner = dbConfiguration.joiner;
         }
 
 
@@ -77,6 +83,11 @@ public class DBConfiguration {
 
         public Builder withPrefix(String prefix) {
             this.dbConfiguration.prefix = prefix;
+            return this;
+        }
+
+        public Builder withJoiner(String joiner) {
+            this.dbConfiguration.joiner = joiner;
             return this;
         }
 
