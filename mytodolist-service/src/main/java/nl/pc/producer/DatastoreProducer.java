@@ -9,6 +9,8 @@ import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.ValidationExtension;
 import org.mongodb.morphia.logging.MorphiaLoggerFactory;
 import org.mongodb.morphia.logging.slf4j.SLF4JLoggerImplFactory;
+
+import javax.annotation.PostConstruct;
 import javax.ejb.Lock;
 import javax.ejb.LockType;
 import javax.enterprise.inject.Produces;
@@ -16,7 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public abstract class DatastoreProducer {
+public abstract class DatastoreProducer implements IDatastoreProducer {
+
+    private Datastore datastore;
 
     public abstract DBConfiguration getDBConfiguration();
 
@@ -25,6 +29,11 @@ public abstract class DatastoreProducer {
     @Lock(LockType.READ)
     @Produces
     public Datastore getDatastore() {
+        return this.datastore;
+    }
+
+    @PostConstruct
+    public void init() {
         DBConfiguration cfg = getDBConfiguration();
         List<MongoCredential> credentials = new ArrayList<>();
         cfg.getDbCredentials()
@@ -47,9 +56,7 @@ public abstract class DatastoreProducer {
 
         getEntityClasses().forEach(morphia::map);
 
-        Datastore datastore = morphia.createDatastore(client, cfg.getPrefixedDatabaseName());
+        datastore = morphia.createDatastore(client, cfg.getPrefixedDatabaseName());
         datastore.ensureIndexes();
-
-        return datastore;
     }
 }

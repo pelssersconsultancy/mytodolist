@@ -1,43 +1,41 @@
 package nl.pc.producer;
 
 
-import nl.pc.common.SystemProperty;
 import nl.pc.model.mongodb.RootEntity;
 import nl.pc.model.mongodb.TodoItem;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.ejb.Singleton;
 import java.util.Collections;
 import java.util.List;
 
 @Singleton
+@TodoItemDatastore
 @ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 public class TodoItemDatastoreProducer extends DatastoreProducer {
 
-    @Inject
-    @SystemProperty("todoitems.mongodb.hostname")
-    private String hostname;
+//    @Inject
+//    @SystemProperty("todoitems.mongodb.hostname")
+    private String hostname = "localhost";
 
-    @Inject
-    @SystemProperty("todoitems.mongodb.port")
-    private int port; //TODO: verify if this will work... as port is int
+//    @Inject
+//    @SystemProperty("todoitems.mongodb.port")
+    private int port = 27017; //TODO: verify if this will work... as port is int
 
-    @Inject
-    @SystemProperty("todoitems.mongodb.databasename")
-    private String databasename;
+//    @Inject
+//    @SystemProperty("todoitems.mongodb.databasename")
+    private String databasename = "pc";
 
-    @Inject
-    @SystemProperty("todoitems.mongodb.prefix")
-    private String prefix;
+//    @Inject
+//    @SystemProperty("todoitems.mongodb.prefix")
+    private String prefix = "LOCAL";
 
-    @Inject
-    @SystemProperty("todoitems.mongodb.username")
+//    @Inject
+//    @SystemProperty("todoitems.mongodb.username")
     private String username;
 
-    @Inject
-    @SystemProperty("todoitems.mongodb.password")
+//    @Inject
+//    @SystemProperty("todoitems.mongodb.password")
     private String password;
 
     @Override
@@ -48,7 +46,7 @@ public class TodoItemDatastoreProducer extends DatastoreProducer {
             .withPort(port)
             .withPrefix(prefix)
             .withJoiner("_")
-            .withCredentials(username, password)
+//            .withCredentials(username, password)
             .build();
     }
 

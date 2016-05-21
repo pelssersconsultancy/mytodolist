@@ -32,8 +32,10 @@
         <dependency>
             <groupId>nl.pc</groupId>
             <artifactId>mytodolist-service</artifactId>
-            <version>${project.version}</version>
+            <type>ejb</type>
         </dependency>
+
+
         <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>

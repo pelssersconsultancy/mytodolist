@@ -15,10 +15,8 @@ import java.util.UUID;
 
 import static nl.pc.rest.model.TodoItemViewModel.*;
 
-
 @Stateless
 public class TodoItemRestService implements ITodoItemRestService {
-
 
     @Inject
     private ITodoItemService todoItemService;

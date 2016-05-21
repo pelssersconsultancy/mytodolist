@@ -27,6 +27,13 @@
     <dependencyManagement>
         <dependencies>
 
+            <dependency>
+                <groupId>nl.pc</groupId>
+                <artifactId>mytodolist-common</artifactId>
+                <version>${project.version}</version>
+                <type>ejb</type>
+            </dependency>
+
             <!-- Java EE dependencies-->
             <dependency>
                 <groupId>org.jboss.spec</groupId>

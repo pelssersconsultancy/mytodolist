@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>mytodolist-service</artifactId>
-    <packaging>jar</packaging>
+    <packaging>ejb</packaging>
     <name>My Todo List: Repository</name>
 
     <dependencyManagement>
@@ -29,7 +29,7 @@
         <dependency>
             <groupId>nl.pc</groupId>
             <artifactId>mytodolist-common</artifactId>
-            <version>${project.version}</version>
+            <type>ejb</type>
         </dependency>
 
         <dependency>
@@ -73,6 +73,14 @@
                 <target>${maven.compiler.target}</target>
             </configuration>
         </plugin>
+          <plugin>
+              <artifactId>maven-ejb-plugin</artifactId>
+              <version>${version.ejb.plugin}</version>
+              <configuration>
+                  <!-- Tell Maven we are using EJB 3.1 -->
+                  <ejbVersion>3.1</ejbVersion>
+              </configuration>
+          </plugin>
       </plugins>
     </build>
 
