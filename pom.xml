@@ -19,6 +19,7 @@
         <module>mytodolist-web</module>
         <module>mytodolist-service</module>
         <module>mytodolist-common</module>
+        <module>mytodolist-ear</module>
     </modules>
 
     <!-- Needed for mvn Release plugin -->
@@ -34,6 +35,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <version.compiler.plugin>3.1</version.compiler.plugin>
         <version.ejb.plugin>2.3</version.ejb.plugin>
+        <version.ear.plugin>2.10.1</version.ear.plugin>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
 

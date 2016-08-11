@@ -11,9 +11,10 @@ import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
-@Path("/todo-item")
+
 @Produces(MediaType.APPLICATION_JSON)
 @Api(value = "Todo Item", description = "Operations about Todo Items")
+@Path("/todo-item")
 public class TodoItemResource {
 
     @Context
@@ -25,14 +26,12 @@ public class TodoItemResource {
     @Inject
     private ITodoItemRestService todoItemRestService;
 
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @ApiOperation(
-            value = "Create a new Todo Item",
-            notes = "Creates a new `TodoItem`",
-            response = TodoItemViewModel.class)
+    @ApiOperation(value = "Create a new Todo Item", notes = "Creates a new `TodoItem`")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message="Successfully created"),
+            @ApiResponse(code = 201, message="Successfully created", response = TodoItemViewModel.class),
             @ApiResponse(code = 400, message="Invalid TodoItemCreateModel")
     })
     public Response createKpi(@Valid TodoItemCreateModel model) {

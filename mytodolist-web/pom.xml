@@ -23,6 +23,7 @@
             <artifactId>mytodolist-service</artifactId>
             <version>${project.version}</version>
             <type>ejb</type>
+            <scope>provided</scope>
         </dependency>
 
 
@@ -41,9 +42,20 @@
             <artifactId>jaxrs-api</artifactId>
             <scope>provided</scope>
         </dependency>
+
+
+        <!--
+         ! Swagger
+         -->
         <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-jaxrs</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.ws.rs</groupId>
+                    <artifactId>jsr311-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 

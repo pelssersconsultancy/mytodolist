@@ -1,0 +1,7 @@
+<jboss-deployment-structure>
+    <deployment>
+    </deployment>
+
+    <sub-deployment name="mytodolist-service.jar"/>
+    <sub-deployment name="mytodolist-web.war"/>
+</jboss-deployment-structure>

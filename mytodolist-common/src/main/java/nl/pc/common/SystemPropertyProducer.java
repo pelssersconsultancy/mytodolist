@@ -20,6 +20,7 @@ import java.util.Optional;
  *
  *   <system-properties>
  *       <property name="global.environment" value="PROD"/>
+ *       <property name="global.year" value="2016"/>
  *   </system-properties>
  * </server>
  *
@@ -30,6 +31,10 @@ import java.util.Optional;
  *   @SystemProperty("global.environment")
  *   private String environment;
  *
+ *   @Inject
+ *   @SystemProperty(value = "global.year", type = Integer.class)
+ *   private Integer year;
+ *
  */
 
 @Dependent
@@ -37,11 +42,22 @@ public class SystemPropertyProducer {
 
     @Produces
     @SystemProperty("")
-    public String findProperty(InjectionPoint ip) {
+    public Object findProperty(InjectionPoint ip) {
         SystemProperty annotation = ip.getAnnotated().getAnnotation(SystemProperty.class);
         Optional<String> propertyValue = Optional.ofNullable(System.getProperty(annotation.value()));
-        return propertyValue.orElseThrow(() ->
+        Class<?> type = annotation.type();
+
+        return propertyValue.map(value -> convertValue(value, type)).orElseThrow(() ->
                 new PropertyNotFoundException("Could not locate system property " + annotation.value()));
+    }
+
+    private Object convertValue(String value, Class<?> type ) {
+        if (type == String.class) return value;
+        if (type == Boolean.class) return Boolean.parseBoolean(value);
+        if (type == Integer.class) return Integer.parseInt(value);
+        if (type == Float.class) return Float.parseFloat(value);
+        if (type == Long.class) return Long.parseLong(value);
+        throw new IllegalArgumentException("Unsupported type");
     }
 }
 

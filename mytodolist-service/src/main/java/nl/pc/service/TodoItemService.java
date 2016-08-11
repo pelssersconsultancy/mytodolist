@@ -7,15 +7,19 @@ import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Key;
 import org.mongodb.morphia.query.Query;
 
-import javax.ejb.Singleton;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import java.util.Optional;
 
-@Singleton
+@Stateless
 public class TodoItemService implements ITodoItemService {
 
     private IDatastoreProducer datastoreProducer;
+
+    public TodoItemService() {
+        throw new IllegalStateException();
+    }
 
     @Inject
     public TodoItemService(@TodoItemDatastore IDatastoreProducer datastoreProducer) {
