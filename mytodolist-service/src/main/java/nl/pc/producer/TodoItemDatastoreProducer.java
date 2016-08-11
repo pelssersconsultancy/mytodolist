@@ -6,7 +6,6 @@ import nl.pc.model.mongodb.RootEntity;
 import nl.pc.model.mongodb.TodoItem;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.Collections;
@@ -17,21 +16,21 @@ import java.util.List;
 @ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 public class TodoItemDatastoreProducer extends DatastoreProducer {
 
-//    @Inject
-//    @SystemProperty("todoitems.mongodb.hostname")
-    private String hostname  = "localhost";
+    @Inject
+    @SystemProperty("todoitems.mongodb.hostname")
+    private String hostname;
 
-//    @Inject
-//    @SystemProperty(value = "todoitems.mongodb.port", type = Integer.class)
-    private int port  = 27017;
+    @Inject
+    @SystemProperty("todoitems.mongodb.port")
+    private String port;
 
-//    @Inject
-//    @SystemProperty("todoitems.mongodb.databasename")
-    private String databasename = "DEMO";
+    @Inject
+    @SystemProperty("todoitems.mongodb.databasename")
+    private String databasename;
 
-//    @Inject
-//    @SystemProperty("global.environment")
-    private String prefix = "LOCAL";
+    @Inject
+    @SystemProperty("global.environment")
+    private String prefix;
 
 //    @Inject
 //    @SystemProperty("todoitems.mongodb.username")
@@ -46,7 +45,7 @@ public class TodoItemDatastoreProducer extends DatastoreProducer {
         return new DBConfiguration.Builder()
             .withDatabaseName(databasename)
             .withHostname(hostname)
-            .withPort(port)
+            .withPort(Integer.parseInt(port))
             .withPrefix(prefix)
             .withJoiner("_")
 //            .withCredentials(username, password)

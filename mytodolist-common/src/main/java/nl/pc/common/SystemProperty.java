@@ -12,5 +12,4 @@ import java.lang.annotation.Target;
 @Target({ElementType.PARAMETER, ElementType.FIELD, ElementType.METHOD, ElementType.TYPE})
 public @interface SystemProperty {
     @Nonbinding String value();
-    @Nonbinding Class type() default String.class;
 }
