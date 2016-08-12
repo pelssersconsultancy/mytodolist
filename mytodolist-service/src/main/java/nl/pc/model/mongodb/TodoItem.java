@@ -5,13 +5,16 @@ import org.mongodb.morphia.annotations.Entity;
 @Entity(noClassnameStored = true)
 public class TodoItem extends RootEntity {
 
-    protected String shortName;
+    private String shortName;
     public static final String _shortName = "shortName";
 
-    protected String description;
+    private String description;
     public static final String _description = "description";
 
-    protected String id;
+    private boolean done;
+    public static final String _done = "done";
+
+    private String id;
     public static final String _id = "id";
 
     public TodoItem() {}

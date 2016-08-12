@@ -3,6 +3,7 @@ package nl.pc.rest.api;
 import io.swagger.jaxrs.config.BeanConfig;
 import io.swagger.jaxrs.listing.ApiListingResource;
 import io.swagger.jaxrs.listing.SwaggerSerializers;
+import nl.pc.rest.filter.SecurityContextFilter;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -24,6 +25,9 @@ public class TodoItemApplication extends Application {
     @Override
     public Set<Class<?>> getClasses() {
         Set<Class<?>> resources = new HashSet<>();
+
+        //add filters
+        resources.add(SecurityContextFilter.class);
 
         //add Swagger resources
         resources.add(ApiListingResource.class);

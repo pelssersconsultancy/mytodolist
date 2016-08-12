@@ -1,16 +1,26 @@
 package nl.pc.model.mongodb;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class AuditTrail {
 
-    @NotNull
-    protected Date created;
-    public static final String _created = "created";
+    @NotBlank
+    private String createdBy;
+    public static final String _createdBy = "createdBy";
 
     @NotNull
-    protected Date lastModified;
+    private Date created;
+    public static final String _created = "created";
+
+    @NotBlank
+    private String lastModifiedBy;
+    public static final String _lastModifiedBy = "lastModifiedBy";
+
+    @NotNull
+    private Date lastModified;
     public static final String _lastModified = "lastModified";
 
     public Date getCreated() {
@@ -19,6 +29,14 @@ public class AuditTrail {
 
     public Date getLastModified() {
         return lastModified;
+    }
+
+    public String getCreatedBy() {
+        return this.createdBy;
+    }
+
+    public String getLastModifiedBy() {
+        return this.lastModifiedBy;
     }
 
 
@@ -30,13 +48,18 @@ public class AuditTrail {
             this.auditTrail = new AuditTrail();
         }
 
-        public Builder(AuditTrail auditTrail) {
-            this.auditTrail.created = auditTrail.created;
-            this.auditTrail.lastModified = auditTrail.lastModified;
+        public Builder withCreatedBy(String createdBy) {
+            this.auditTrail.createdBy = createdBy;
+            return this;
         }
 
         public Builder withCreated(Date created) {
             this.auditTrail.created = created;
+            return this;
+        }
+
+        public Builder withLastModifiedBy(String lastModifiedBy) {
+            this.auditTrail.lastModifiedBy = lastModifiedBy;
             return this;
         }
 

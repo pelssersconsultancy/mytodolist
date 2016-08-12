@@ -4,11 +4,13 @@ package nl.pc.rest.model;
 import java.util.Date;
 
 public class TodoItemViewModel {
-    protected String id;
-    protected String shortName;
-    protected String description;
-    protected Date created;
-    protected Date lastModified;
+    private String id;
+    private String shortName;
+    private String description;
+    private Date created;
+    private String createdBy;
+    private Date lastModified;
+    private String lastModifiedBy;
 
     public String getShortName() {
         return shortName;
@@ -52,6 +54,23 @@ public class TodoItemViewModel {
         this.lastModified = lastModified;
     }
 
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
+    }
+
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
+    }
+
+
     public static class Builder {
         private TodoItemViewModel model;
 
@@ -61,14 +80,21 @@ public class TodoItemViewModel {
 
         public Builder(TodoItemViewModel model) {
             this.model.created = model.created;
+            this.model.createdBy = model.createdBy;
             this.model.description = model.description;
             this.model.id = model.id;
             this.model.lastModified = model.lastModified;
+            this.model.lastModifiedBy = model.lastModifiedBy;
             this.model.shortName = model.shortName;
         }
 
         public Builder withCreated(Date created) {
             this.model.created = created;
+            return this;
+        }
+
+        public Builder withCreatedBy(String createdBy) {
+            this.model.createdBy = createdBy;
             return this;
         }
 
@@ -84,6 +110,11 @@ public class TodoItemViewModel {
 
         public Builder withLastModified(Date lastModified) {
             this.model.lastModified = lastModified;
+            return this;
+        }
+
+        public Builder withLastModifiedBy(String lastModifiedBy) {
+            this.model.lastModifiedBy = lastModifiedBy;
             return this;
         }
 

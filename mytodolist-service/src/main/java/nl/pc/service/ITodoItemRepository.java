@@ -6,7 +6,7 @@ import org.mongodb.morphia.Key;
 
 import java.util.Optional;
 
-public interface ITodoItemService {
+public interface ITodoItemRepository {
 
     Key<TodoItem> insert(TodoItem todoItem);
 

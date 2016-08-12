@@ -13,16 +13,16 @@ import javax.inject.Inject;
 import java.util.Optional;
 
 @Stateless
-public class TodoItemService implements ITodoItemService {
+public class TodoItemRepository implements ITodoItemRepository {
 
     private IDatastoreProducer datastoreProducer;
 
-    public TodoItemService() {
+    public TodoItemRepository() {
         throw new IllegalStateException();
     }
 
     @Inject
-    public TodoItemService(@TodoItemDatastore IDatastoreProducer datastoreProducer) {
+    public TodoItemRepository(@TodoItemDatastore IDatastoreProducer datastoreProducer) {
        this.datastoreProducer = datastoreProducer;
     }
 
