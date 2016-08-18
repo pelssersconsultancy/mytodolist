@@ -13,10 +13,10 @@ import java.util.function.Function;
  * @param <ENTITY>
  * @param <IN> type of the values
  */
-public abstract class HasAllOfFilter<ENTITY extends RootEntity, IN> extends CollectionFilter<ENTITY, IN> {
+public class HasAllOfFilter<ENTITY extends RootEntity, IN> extends CollectionFilter<ENTITY, IN> {
 
-    public HasAllOfFilter(Collection<IN> collection) {
-        super(collection);
+    public HasAllOfFilter(Collection<IN> collection, String fieldName) {
+        super(collection, fieldName);
     }
 
     @Override

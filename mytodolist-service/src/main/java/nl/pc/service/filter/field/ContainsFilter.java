@@ -10,12 +10,12 @@ import java.util.function.Function;
  * Checks if a field contains a value
  * @param <ENTITY>
  */
-public abstract class ContainsFilter<ENTITY extends RootEntity> extends SingleValueFilter<ENTITY, String>  {
+public abstract class ContainsFilter<ENTITY extends RootEntity> extends SingleFieldFilter<ENTITY, String> {
 
-    private boolean ignoreCase;
+    private final boolean ignoreCase;
 
-    public ContainsFilter(String value, boolean ignoreCase) {
-        super(value);
+    public ContainsFilter(String value, String fieldName, boolean ignoreCase) {
+        super(value, fieldName);
         this.ignoreCase = ignoreCase;
     }
 

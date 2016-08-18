@@ -11,11 +11,22 @@ import java.util.function.Function;
  * Checks that a field exists in a document
  * @param <ENTITY>
  */
-public abstract class ExistsFilter<ENTITY extends RootEntity> implements ISingleFieldFilter<ENTITY> {
+public class ExistsFilter<ENTITY extends RootEntity> implements ISingleFieldFilter<ENTITY> {
+
+    private final String fieldName;
+
+    public ExistsFilter(String fieldName) {
+        this.fieldName = fieldName;
+    }
 
     @Override
     public boolean shouldApply() {
         return true;
+    }
+
+    @Override
+    public String getFieldName() {
+        return fieldName;
     }
 
     @Override

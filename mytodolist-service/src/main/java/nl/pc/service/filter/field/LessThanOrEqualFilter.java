@@ -10,10 +10,10 @@ import java.util.function.Function;
  * Checks that a field is less than or equal to the value given
  * @param <ENTITY>
  */
-public abstract class LessThanOrEqualFilter<ENTITY extends RootEntity> extends SingleValueFilter<ENTITY, Object> {
+public class LessThanOrEqualFilter<ENTITY extends RootEntity> extends SingleFieldFilter<ENTITY, Object> {
 
-    public LessThanOrEqualFilter(Object value) {
-        super(value);
+    public LessThanOrEqualFilter(Object value, String fieldName) {
+        super(value, fieldName);
     }
 
     @Override

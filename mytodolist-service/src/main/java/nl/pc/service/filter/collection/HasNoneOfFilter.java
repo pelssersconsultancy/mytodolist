@@ -12,10 +12,10 @@ import java.util.function.Function;
  * @param <ENTITY>
  * @param <IN> type of the values
  */
-public abstract class HasNoneOfFilter<ENTITY extends RootEntity, IN> extends CollectionFilter<ENTITY, IN> {
+public class HasNoneOfFilter<ENTITY extends RootEntity, IN> extends CollectionFilter<ENTITY, IN> {
 
-    public HasNoneOfFilter(Collection<IN> collection) {
-        super(collection);
+    public HasNoneOfFilter(Collection<IN> collection, String fieldName) {
+        super(collection, fieldName);
     }
 
     @Override

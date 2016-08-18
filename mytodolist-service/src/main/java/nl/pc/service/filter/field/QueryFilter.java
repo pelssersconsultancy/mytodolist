@@ -1,7 +1,8 @@
-package nl.pc.service.filter;
+package nl.pc.service.filter.field;
 
 
 import nl.pc.model.mongodb.RootEntity;
+import nl.pc.service.filter.IMultiFieldFilter;
 import org.mongodb.morphia.query.Criteria;
 import org.mongodb.morphia.query.Query;
 

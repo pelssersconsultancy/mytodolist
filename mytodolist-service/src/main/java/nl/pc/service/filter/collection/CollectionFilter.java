@@ -8,13 +8,20 @@ import java.util.Collection;
 public abstract class CollectionFilter<ENTITY extends RootEntity, IN> implements ISingleFieldFilter<ENTITY> {
 
     private final Collection<IN> collection;
+    private final String fieldName;
 
-    public CollectionFilter(Collection<IN> collection) {
+    public CollectionFilter(Collection<IN> collection, String fieldName) {
         this.collection = collection;
+        this.fieldName = fieldName;
     }
 
     public Iterable<IN> getCollection() {
         return this.collection;
+    }
+
+    @Override
+    public String getFieldName() {
+        return fieldName;
     }
 
     @Override

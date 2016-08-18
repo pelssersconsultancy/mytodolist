@@ -9,10 +9,10 @@ import java.util.function.Function;
  * Checks that a field is greater than the value given
  * @param <ENTITY>
  */
-public abstract class GreaterThanFilter<ENTITY extends RootEntity> extends SingleValueFilter<ENTITY, Object> {
+public class GreaterThanFilter<ENTITY extends RootEntity> extends SingleFieldFilter<ENTITY, Object> {
 
-    public GreaterThanFilter(Object value) {
-        super(value);
+    public GreaterThanFilter(Object value, String fieldName) {
+        super(value, fieldName);
     }
 
     @Override

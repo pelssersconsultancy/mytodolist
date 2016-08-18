@@ -10,10 +10,10 @@ import java.util.function.Function;
  * Checks that a field equals a value
  * @param <ENTITY>
  */
-public abstract class EqualFilter<ENTITY extends RootEntity> extends SingleValueFilter<ENTITY, Object> {
+public abstract class EqualFilter<ENTITY extends RootEntity> extends SingleFieldFilter<ENTITY, Object> {
 
-    public EqualFilter(Object value) {
-        super(value);
+    public EqualFilter(Object value, String fieldName) {
+        super(value, fieldName);
     }
 
     @Override

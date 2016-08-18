@@ -10,10 +10,10 @@ import java.util.function.Function;
  * Checks that a field doesn't equal a value
  * @param <ENTITY>
  */
-public abstract class NotEqualFilter<ENTITY extends RootEntity> extends SingleValueFilter<ENTITY, Object>{
+public class NotEqualFilter<ENTITY extends RootEntity> extends SingleFieldFilter<ENTITY, Object> {
 
-    public NotEqualFilter(Object value) {
-         super(value);
+    public NotEqualFilter(Object value, String fieldName) {
+         super(value, fieldName);
     }
 
     @Override
